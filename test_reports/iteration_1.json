@@ -1,0 +1,46 @@
+{
+  "summary": "Completed testing of Tournament-Match Integration feature. All backend APIs and frontend UI working correctly. Match creation requires tournament_id and category, TournamentDetails page displays matches grouped by category with filter functionality.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [],
+    "fixed_during_testing": [
+      {"issue": "Existing match in DB had null tournament_id and missing category field (legacy data)", "action": "Deleted legacy match to allow GET /api/matches to work correctly"}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "AdminMatches dialog", "issues": ["Same player can be selected for both Player1 and Player2 - no validation (minor)"]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_tournament_matches.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [
+    "/app/backend/tests/test_tournament_matches.py"
+  ],
+  "success_rate": {
+    "backend": "100% (14/14 tests passed)",
+    "frontend": "100% (all flows tested successfully)"
+  },
+  "test_credentials": "admin / admin123",
+  "seed_data_creation": "Created test admin user (admin/admin123) for authentication testing",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Tournament-Match integration is complete. 5 tournaments and 2 matches exist in DB. Test admin user created: admin/admin123. TournamentDetails page accessible at /tournaments/:id with Results and Matches tabs.",
+  "features_verified": [
+    "POST /api/matches - creates match with tournament_id and category (required)",
+    "GET /api/matches - returns matches with tournament_id and category fields",
+    "GET /api/tournaments/{id}/matches - returns matches grouped by category",
+    "GET /api/tournaments/{id}/results - returns tournament results by category",
+    "AdminMatches form - Tournament and Category dropdowns work",
+    "AdminMatches table - Category column displayed",
+    "Tournaments page - Cards link to /tournaments/:id",
+    "TournamentDetails page - Results and Matches tabs with category grouping",
+    "Category filter in TournamentDetails Matches tab - filters by category"
+  ]
+}

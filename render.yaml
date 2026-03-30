@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: squashrank-frontend
+    rootDir: frontend
+    env: node
+    buildCommand: yarn install && yarn build
+    startCommand: npx serve -s build -l $PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
